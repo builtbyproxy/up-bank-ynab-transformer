@@ -60,6 +60,26 @@ curl https://api.up.com.au/api/v1/accounts -G -H 'Authorization: Bearer <UP_API_
      `https://app.youneedabudget.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`. The `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
      portion is your YNAB Budget ID.
 
+### Mirroring Transfers in Your Budget (Optional)
+
+By default, moving money between Up accounts only creates a transfer between YNAB accounts, so your category balances
+don't change. If each saver has a purpose that matches a YNAB category (e.g. an Emergency Fund saver and an Emergency
+Fund category), you can have transfers move the budgeted amount between categories too.
+
+1. Run the following, replacing `<YNAB_API_KEY>` and `<YNAB_BUDGET_ID>` with the values from your `.env`.
+
+```bash
+curl https://api.ynab.com/v1/budgets/<YNAB_BUDGET_ID>/categories -H 'Authorization: Bearer <YNAB_API_KEY>'
+```
+
+2. Find the category for each account you want to mirror and set its `id` as `categoryId` on the matching entry in
+   `accountMapping.json`.
+
+When a transfer you make between two accounts that both have a `categoryId` is created, the transferred amount is moved
+from the source account's category to the destination account's category for that month. Transfers Up makes for you
+(payday splits, scheduled transfers and round ups) are skipped, since those are already planned in your budget.
+Accounts without a `categoryId` are never touched.
+
 ### Deploying
 
 If you have specific AWS credentials for deploying this, please replace the value of `profile` in `serverless.yml`. If

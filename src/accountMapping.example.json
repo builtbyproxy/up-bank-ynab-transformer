@@ -12,6 +12,7 @@
   {
     "name": "Up My Saver",
     "upId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "ynabId": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+    "ynabId": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy",
+    "categoryId": "cccccccc-cccc-cccc-cccc-cccccccccccc"
   }
 ]
