@@ -80,6 +80,18 @@ from the source account's category to the destination account's category for tha
 (payday splits, scheduled transfers and round ups) are skipped, since those are already planned in your budget.
 Accounts without a `categoryId` are never touched.
 
+Things to know:
+
+- **It works in both directions.** Moving money from a saver to your transactional account moves budget from the
+  saver's category, and moving it back (e.g. paying back money you took out) moves it back into the saver's category.
+- **Give your transactional account a `categoryId` too** (e.g. a "Spending Money" category). Without one, transfers
+  between savers and your transactional account, usually the most common kind, won't move any budget.
+- **Every transfer you make yourself is treated as unplanned.** If you split your pay by hand instead of using Up's
+  automatic pay split, or you've already assigned the money in YNAB before making the transfer, the budget will be moved
+  a second time and you'll need to undo one of them.
+- **Covers move budget into the transactional account's category**, not into the category of the purchase being
+  covered. Recategorise in YNAB if the money was for something else.
+
 ### Deploying
 
 If you have specific AWS credentials for deploying this, please replace the value of `profile` in `serverless.yml`. If
